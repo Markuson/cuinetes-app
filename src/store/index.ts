@@ -3,16 +3,17 @@ import { combineReducers } from "redux";
 import { createWrapper } from "next-redux-wrapper";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
-import preferences from "./slices/preferences";
+import user from "./slices/user";
+import localStorage from "redux-persist/es/storage";
 
 const rootReducer = combineReducers({
-  preferences,
+  user,
 });
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['preferences'],
+    whitelist: ['user'],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

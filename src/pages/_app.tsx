@@ -5,6 +5,8 @@ import {
   theme,
   ThemeType,
 } from "@nextui-org/react";
+import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
+import { darkTheme, lightTheme } from "@/colors/themes";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { storeWrapper, store, persistor, RootState } from "../store";
@@ -12,9 +14,10 @@ import { Provider, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
 function App({ Component, pageProps }: AppProps) {
-  const [themeType, setThemeType] = React.useState<ThemeType>("light");
+  // const [theme, setTheme] = React.useState<ThemeType>("light");
+  const { setTheme } = useTheme();
   const selectedTheme = useSelector(
-    (state: RootState) => state.preferences.theme
+    (state: RootState) => state.user.preferences.theme
   );
 
   React.useEffect(() => {
@@ -26,19 +29,23 @@ function App({ Component, pageProps }: AppProps) {
       ? "dark"
       : "light";
     console.log("THEME: ", _theme);
-    setThemeType(_theme);
-  }, [selectedTheme]);
-
-  const theme = createTheme({
-    type: themeType,
-  });
-
+    setTheme(_theme);
+  }, []);
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <NextUIProvider theme={theme}>
-          <Component {...pageProps} />
-        </NextUIProvider>
+        <NextThemesProvider
+          defaultTheme="system"
+          attribute="class"
+          value={{
+            light: lightTheme.className,
+            dark: darkTheme.className,
+          }}
+        >
+          <NextUIProvider>
+            <Component {...pageProps} />
+          </NextUIProvider>
+        </NextThemesProvider>
       </PersistGate>
     </Provider>
   );

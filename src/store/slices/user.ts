@@ -1,21 +1,33 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
-export type PreferencesStateType = {
+export type userStateType = {
+  preferences:{
     theme: undefined | 'dark' | 'light',
+  }
+  login:{
+    userName: string | undefined;
+    token: string | undefined;
+  }
 }
 
-const initialState: PreferencesStateType = {
-  theme: undefined,
+const initialState: userStateType = {
+  preferences:{
+    theme: undefined
+  },
+  login:{
+    userName: undefined,
+    token: undefined
+  }
 };
 
 
-const { actions, reducer: preferences } = createSlice({
-  name: "preferences",
+const { actions, reducer } = createSlice({
+  name: "user",
   initialState,
   reducers: {
     setTheme: (state, action) => {
-      state.theme = action.payload;
+      state.preferences.theme = action.payload;
     },
   },
   extraReducers: {
@@ -31,4 +43,4 @@ const { actions, reducer: preferences } = createSlice({
 
 export const { setTheme } = actions;
 
-export default preferences;
+export default reducer;

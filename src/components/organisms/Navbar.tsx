@@ -1,5 +1,7 @@
 import React from 'react'
-import { Navbar as _Navbar , Text, styled, Switch, SwitchEvent} from '@nextui-org/react'
+import { Navbar as _Navbar , Text, styled, Switch, SwitchEvent, useTheme} from '@nextui-org/react'
+import { useTheme as useNextTheme } from "next-themes";
+
 import DarkMode from 'public/assets/icons/DarkMode';
 import LightMode from 'public/assets/icons/LightMode';
 
@@ -14,6 +16,8 @@ export interface NavbarPropsType {
 }
 
 export default function Navbar({initialThemeValue, onThemeChange}:NavbarPropsType) {
+  const {setTheme} = useNextTheme();
+  const { isDark, type } = useTheme();
   return (
     <Box>
       <_Navbar variant={"sticky"} isBordered maxWidth={"fluid"}>
@@ -23,11 +27,11 @@ export default function Navbar({initialThemeValue, onThemeChange}:NavbarPropsTyp
             <Switch
               initialChecked={ initialThemeValue && initialThemeValue === 'light' ?
             true : false }
-              
+              checked={!isDark}
               iconOff={<DarkMode />}
               iconOn={<LightMode />}
               onChange={(e: SwitchEvent) =>
-                onThemeChange(e.target.checked ? "light" : "dark")
+                setTheme(e.target.checked ? "light" : "dark")
               }
             />
           </_Navbar.Item>
