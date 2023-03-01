@@ -3,7 +3,7 @@
     "background_color": "#f5f4f0",
     "display": "standalone",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "https://cuinetes-app.vercel.app/",
     "name": "Cuinetes, save & share your recipes",
     "short_name": "cuinetes",
     "description": "An app to save your best recipes and share them with your best friends.",
