@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button, Text, Input, Row, Checkbox } from "@nextui-org/react";
-import ModalContainer from "../atoms/modalContainer";
+import ModalContainer from "../atoms/ModalContainer";
 
 export default function LoginModal() {
   React.useEffect(() => {
