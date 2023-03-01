@@ -28,7 +28,16 @@ export default function Home() {
           content="Store and share your favourite recipes"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charSet="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+          name="description"
+          content="Cuinetes app allows you to save your best recipes and share them with your best friends."
+        />
+        <meta name="theme-color" content="#f5f4f0" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/apple-icon.png"></link>
       </Head>
       <Navbar initialThemeValue={theme} onThemeChange={toggleTheme} />
       <Grid.Container gap={2}>

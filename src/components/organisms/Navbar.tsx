@@ -2,8 +2,8 @@ import React from 'react'
 import { Navbar as _Navbar , Text, styled, Switch, SwitchEvent, useTheme} from '@nextui-org/react'
 import { useTheme as useNextTheme } from "next-themes";
 
-import DarkMode from 'public/assets/icons/DarkMode';
-import LightMode from 'public/assets/icons/LightMode';
+import DarkMode from 'public/assets/icons/svg/DarkMode';
+import LightMode from 'public/assets/icons/svg/LightMode';
 
 const Box = styled("div", {
   boxSizing: "border-box",
